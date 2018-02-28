@@ -1,6 +1,7 @@
 package ru.spbau.sd.cli;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public enum BuiltinCommand implements Command {
     echo {
@@ -133,14 +135,9 @@ public enum BuiltinCommand implements Command {
         }
     };
 
-    static Set<String> commands;
-
-    static {
-        commands = new HashSet<>();
-        for (BuiltinCommand command: values()) {
-            commands.add(command.name());
-        }
-    }
+    static Set<String> commands = new HashSet<>(Arrays.stream(values())
+                    .map(BuiltinCommand::toString)
+                    .collect(Collectors.toList()));
 
     public static boolean exists(String command) {
         return commands.contains(command);

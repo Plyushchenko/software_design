@@ -2,6 +2,9 @@ package ru.spbau.sd.cli;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.util.Collections;
 
 public class AssignmentCommandTest {
     @Test
@@ -32,5 +35,17 @@ public class AssignmentCommandTest {
     public void spaceIsAssignmentTest() {
         String command = "a= bc";
         Assert.assertEquals(false, AssignmentCommand.isAssignment(command));
+    }
+
+    @Test
+    public void runTest() {
+        final String name = "name";
+        final String value = "value";
+        Environment mockedEnvironment = Mockito.mock(Environment.class);
+
+        AssignmentCommand command =
+                new AssignmentCommand(name, value, mockedEnvironment);
+        command.run(Collections.emptyList(), null, null);
+        Mockito.verify(mockedEnvironment).set(name, value);
     }
 }

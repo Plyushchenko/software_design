@@ -12,6 +12,18 @@ public class ASTElement {
         this.arguments = arguments;
     }
 
+    public Command getCommand() {
+        return command;
+    }
+
+    public List<String> getArguments() {
+        return arguments;
+    }
+
+    public ASTElement getPrevious() {
+        return previous;
+    }
+
     public void setPrevious(ASTElement previous) {
         this.previous = previous;
     }
