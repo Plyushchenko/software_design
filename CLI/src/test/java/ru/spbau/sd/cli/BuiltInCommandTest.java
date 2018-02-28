@@ -52,7 +52,7 @@ public class BuiltInCommandTest {
     @Test
     public void exitTest() {
         Assert.assertEquals(ExecutionResult.Finish,
-                BuiltinCommand.echo.run(Collections.emptyList(),
+                BuiltinCommand.exit.run(Collections.emptyList(),
                         null, null));
     }
 

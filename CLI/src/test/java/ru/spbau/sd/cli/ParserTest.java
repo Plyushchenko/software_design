@@ -11,9 +11,9 @@ public class ParserTest {
     public void builtinTest() {
         final BuiltinCommand cmd = BuiltinCommand.cat;
         final String arg1 = "file.txt";
-        final String arg2 = "'software design.txt'";
+        final String arg2 = "software design.txt";
         Parser parser = new Parser(null);
-        ASTElement ret = parser.parseLine(String.format("%s %s %s", cmd, arg1, arg2));
+        ASTElement ret = parser.parseLine(String.format("%s %s '%s'", cmd, arg1, arg2));
         Assert.assertEquals(BuiltinCommand.cat, ret.getCommand());
         Assert.assertNull(ret.getPrevious());
         Assert.assertEquals(Arrays.asList(arg1, arg2), ret.getArguments());
