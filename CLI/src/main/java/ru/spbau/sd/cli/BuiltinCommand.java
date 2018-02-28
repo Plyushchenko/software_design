@@ -11,7 +11,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * This enumeration represents all the commands built in the interpreter.
+ */
 public enum BuiltinCommand implements Command {
+    /**
+     * Writes its arguments to the output stream. If no arguments provided,
+     * copies the input to the output stream.
+     */
     echo {
         @Override
         public ExecutionResult run(List<String> arguments, InputStream inputStream,
@@ -24,6 +31,9 @@ public enum BuiltinCommand implements Command {
             return ExecutionResult.OK;
         }
     },
+    /**
+     * Tells the interpreter to close session.
+     */
     exit {
         @Override
         public ExecutionResult run(List<String> arguments, InputStream inputStream,
@@ -31,6 +41,9 @@ public enum BuiltinCommand implements Command {
             return ExecutionResult.Finish;
         }
     },
+    /**
+     * Writes path to the current directory to the output stream.
+     */
     pwd {
         @Override
         public ExecutionResult run(List<String> arguments, InputStream inputStream,
@@ -40,6 +53,10 @@ public enum BuiltinCommand implements Command {
             return ExecutionResult.OK;
         }
     },
+    /**
+     * If any arguments are passed, writes content of files with that names to the
+     * output stream. Otherwise copies input to output stream.
+     */
     cat {
         @Override
         public ExecutionResult run(List<String> arguments, InputStream inputStream,
@@ -62,6 +79,10 @@ public enum BuiltinCommand implements Command {
             return ExecutionResult.OK;
         }
     },
+    /**
+     * Counts lines, words and symbols in files which names are passed as arguments.
+     * If no arguments provided, reads from input stream.
+     */
     wc {
         private final int STATS_NUMBER = 3;
 
@@ -135,10 +156,15 @@ public enum BuiltinCommand implements Command {
         }
     };
 
-    static Set<String> commands = new HashSet<>(Arrays.stream(values())
+    private static Set<String> commands = new HashSet<>(Arrays.stream(values())
                     .map(BuiltinCommand::toString)
                     .collect(Collectors.toList()));
 
+    /**
+     * Checks if a command with provided name is built in.
+     * @param command the name to check.
+     * @return true if such builtin command exists, false if it does not.
+     */
     public static boolean exists(String command) {
         return commands.contains(command);
     }

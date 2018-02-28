@@ -2,11 +2,20 @@ package ru.spbau.sd.cli;
 
 import java.util.List;
 
+/**
+ * This is an element of a abstract syntax tree (actually list) created during
+ * parsing a pipeline.
+ */
 public class ASTElement {
     private Command command;
     private List<String> arguments;
     private ASTElement previous;
 
+    /**
+     * Creates an instance with provided command and arguments.
+     * @param command the command
+     * @param arguments arguments to pass to command
+     */
     ASTElement(Command command, List<String> arguments) {
         this.command = command;
         this.arguments = arguments;
@@ -24,10 +33,22 @@ public class ASTElement {
         return previous;
     }
 
+    /**
+     * Sets the previous element link to the provided element.
+     * @param previous the previous element of the pipeline.
+     */
     public void setPrevious(ASTElement previous) {
         this.previous = previous;
     }
 
+    /**
+     * Runs the AST with provided input and output streams. Commands are executed
+     * one-by-one, each command except first gets the output of the previous one.
+     * @param input the input stream
+     * @param output the output stream
+     * @return execution result: OK if all commands finished successfully
+     * Error if one of them returned error, Finish if an exit command was met.
+     */
     public ExecutionResult execute(InputStream input, OutputStream output) {
         InputStream realInput = input;
         if (previous != null) {

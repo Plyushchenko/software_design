@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An implementation of the Command interface allowing to run an external program.
+ */
 public class ExternalCommand implements Command {
     private String program;
 

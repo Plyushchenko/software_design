@@ -3,6 +3,9 @@ package ru.spbau.sd.cli;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * An implementation of the Environment interface based on a hash table.
+ */
 public class SimpleEnvironment implements Environment {
     private Map<String, String> vars = new HashMap<>();
 

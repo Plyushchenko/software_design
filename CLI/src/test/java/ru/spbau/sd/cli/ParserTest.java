@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public class ParserTest {
     @Test
@@ -40,5 +39,10 @@ public class ParserTest {
         Parser parser = new Parser(null);
         ASTElement ast = parser.parseLine(unknownCommand);
         Assert.assertTrue(ast.getCommand() instanceof ExternalCommand);
+    }
+
+    @Test
+    public void pipelineTest() {
+        //TODO implement
     }
 }

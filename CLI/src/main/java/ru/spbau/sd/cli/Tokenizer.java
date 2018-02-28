@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * A Tokenizer takes a pipeline string and allows to iterate through its commands,
+ * each of which is represented as a list of tokens.
+ */
 public class Tokenizer implements Iterable<List<String>> {
     private static final char PIPELINE_DELIMITER = '|';
     private static final char ESCAPE_CHARACTER = '\\';
@@ -85,6 +89,7 @@ public class Tokenizer implements Iterable<List<String>> {
             return tokenBuilder.toString();
         }
 
+        // Reads a quotient scope
         private String getScope(char finishSymbol, boolean substituteVariables) {
             StringBuilder scopeBuilder = new StringBuilder();
             boolean screening = false;
@@ -114,6 +119,7 @@ public class Tokenizer implements Iterable<List<String>> {
             return scopeBuilder.toString();
         }
 
+        // Reads the variable name and returns its value from the environment
         private String getVariableValue() {
             StringBuilder nameBuilder = new StringBuilder();
             while (pos < line.length() && (Character.isLetterOrDigit(line.charAt(pos))

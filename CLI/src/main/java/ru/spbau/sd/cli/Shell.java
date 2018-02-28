@@ -6,7 +6,7 @@ public class Shell {
     private static final String PROMPT = ">";
 
     public static void main(String[] args) {
-        Interpreter session = new Interpreter();
+        InterpreterSession session = new InterpreterSession();
         Scanner inputScanner = new Scanner(System.in);
         while (!session.isTerminated()) {
             System.out.print(PROMPT);
