@@ -1,13 +1,12 @@
-package ru.spbau.sd.cli.commands;
+package ru.spbau.sd.cli.interpreter.commands;
 
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
-import ru.spbau.sd.cli.commands.BuiltinCommand;
 import ru.spbau.sd.cli.interpreter.ExecutionResult;
-import ru.spbau.sd.cli.io.InputStream;
+import ru.spbau.sd.cli.interpreter.io.InputStream;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -25,7 +24,7 @@ public class BuiltInCommandTest {
 
     @Test
     public void echoArgTest() {
-        ru.spbau.sd.cli.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.io.OutputStream.class);
+        ru.spbau.sd.cli.interpreter.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.interpreter.io.OutputStream.class);
         BuiltinCommand.echo.run(Collections.singletonList(content),
                 null, outputStream);
         Mockito.verify(outputStream).write(Mockito.eq(content));
@@ -33,9 +32,9 @@ public class BuiltInCommandTest {
 
     @Test
     public void echoStreamTest() {
-        ru.spbau.sd.cli.io.InputStream inputStream = Mockito.mock(InputStream.class);
+        ru.spbau.sd.cli.interpreter.io.InputStream inputStream = Mockito.mock(InputStream.class);
         Mockito.when(inputStream.read()).thenReturn(content);
-        ru.spbau.sd.cli.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.io.OutputStream.class);
+        ru.spbau.sd.cli.interpreter.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.interpreter.io.OutputStream.class);
         BuiltinCommand.echo.run(Collections.emptyList(), inputStream, outputStream);
         Mockito.verify(outputStream).write(Mockito.eq(content));
     }
@@ -46,7 +45,7 @@ public class BuiltInCommandTest {
         Writer writer = new FileWriter(file);
         writer.write(content);
         writer.close();
-        ru.spbau.sd.cli.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.io.OutputStream.class);
+        ru.spbau.sd.cli.interpreter.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.interpreter.io.OutputStream.class);
         BuiltinCommand.cat.run(Collections.singletonList(file.toPath().toString()),
                 null, outputStream);
         Mockito.verify(outputStream).write(Mockito.eq(content + '\n'));
@@ -62,7 +61,7 @@ public class BuiltInCommandTest {
     @Test
     public void pwdTest() {
         String dir = Paths.get(".").toAbsolutePath().normalize().toString();
-        ru.spbau.sd.cli.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.io.OutputStream.class);
+        ru.spbau.sd.cli.interpreter.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.interpreter.io.OutputStream.class);
         BuiltinCommand.pwd.run(Collections.emptyList(), null, outputStream);
         Mockito.verify(outputStream).write(dir);
     }
@@ -74,7 +73,7 @@ public class BuiltInCommandTest {
         writer.write(content + '\n');
         writer.write(content + '\n');
         writer.close();
-        ru.spbau.sd.cli.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.io.OutputStream.class);
+        ru.spbau.sd.cli.interpreter.io.OutputStream outputStream = Mockito.mock(ru.spbau.sd.cli.interpreter.io.OutputStream.class);
         BuiltinCommand.wc.run(Collections.singletonList(file.toPath().toString()),
                 null, outputStream);
         List<String> expected = Stream.of(2, 4, 2 * (content.length() + 1),

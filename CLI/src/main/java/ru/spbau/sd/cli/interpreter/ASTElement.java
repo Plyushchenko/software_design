@@ -1,10 +1,10 @@
 package ru.spbau.sd.cli.interpreter;
 
-import ru.spbau.sd.cli.commands.Command;
-import ru.spbau.sd.cli.io.IOStream;
-import ru.spbau.sd.cli.io.InputStream;
-import ru.spbau.sd.cli.io.OutputStream;
-import ru.spbau.sd.cli.io.SimpleStream;
+import ru.spbau.sd.cli.interpreter.commands.Command;
+import ru.spbau.sd.cli.interpreter.io.IOStream;
+import ru.spbau.sd.cli.interpreter.io.InputStream;
+import ru.spbau.sd.cli.interpreter.io.OutputStream;
+import ru.spbau.sd.cli.interpreter.io.SimpleStream;
 
 import java.util.List;
 
@@ -31,11 +31,11 @@ public class ASTElement {
         return command;
     }
 
-    public List<String> getArguments() {
+    protected List<String> getArguments() {
         return arguments;
     }
 
-    public ASTElement getPrevious() {
+    protected ASTElement getPrevious() {
         return previous;
     }
 

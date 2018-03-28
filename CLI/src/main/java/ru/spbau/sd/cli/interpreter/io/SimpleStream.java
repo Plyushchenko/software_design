@@ -1,4 +1,4 @@
-package ru.spbau.sd.cli.io;
+package ru.spbau.sd.cli.interpreter.io;
 
 /**
  * An implementation of IOStream, in which the read method returns all the data

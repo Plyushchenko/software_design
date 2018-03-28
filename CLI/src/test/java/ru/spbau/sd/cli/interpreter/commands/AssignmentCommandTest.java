@@ -1,9 +1,8 @@
-package ru.spbau.sd.cli.commands;
+package ru.spbau.sd.cli.interpreter.commands;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-import ru.spbau.sd.cli.commands.AssignmentCommand;
 import ru.spbau.sd.cli.interpreter.Environment;
 
 import java.util.Collections;
@@ -12,31 +11,31 @@ public class AssignmentCommandTest {
     @Test
     public void trueIsAssignmentTest() {
         String command = "__a__=bc";
-        Assert.assertEquals(true, AssignmentCommand.isAssignment(command));
+        Assert.assertTrue(AssignmentCommand.isAssignment(command));
     }
 
     @Test
     public void equalityFirstIsAssignmentTest() {
         String command = "=bc";
-        Assert.assertEquals(false, AssignmentCommand.isAssignment(command));
+        Assert.assertFalse(AssignmentCommand.isAssignment(command));
     }
 
     @Test
     public void digitIsAssignmentTest() {
         String command = "2a=bc";
-        Assert.assertEquals(false, AssignmentCommand.isAssignment(command));
+        Assert.assertFalse(AssignmentCommand.isAssignment(command));
     }
 
     @Test
     public void blankIsAssignmentTest() {
         String command = "a=bc ";
-        Assert.assertEquals(false, AssignmentCommand.isAssignment(command));
+        Assert.assertFalse(AssignmentCommand.isAssignment(command));
     }
 
     @Test
     public void spaceIsAssignmentTest() {
         String command = "a= bc";
-        Assert.assertEquals(false, AssignmentCommand.isAssignment(command));
+        Assert.assertFalse(AssignmentCommand.isAssignment(command));
     }
 
     @Test

@@ -2,9 +2,7 @@ package ru.spbau.sd.cli.interpreter;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import ru.spbau.sd.cli.commands.Command;
-import ru.spbau.sd.cli.interpreter.ASTElement;
-import ru.spbau.sd.cli.interpreter.ExecutionResult;
+import ru.spbau.sd.cli.interpreter.commands.Command;
 
 import java.util.Collections;
 

@@ -1,8 +1,7 @@
-package ru.spbau.sd.cli.io;
+package ru.spbau.sd.cli.interpreter.io;
 
 import org.junit.Assert;
 import org.junit.Test;
-import ru.spbau.sd.cli.io.SimpleStream;
 
 public class SimpleStreamTest {
     private final String testStr1 = "foo";

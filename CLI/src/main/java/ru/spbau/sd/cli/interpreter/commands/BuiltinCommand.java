@@ -1,8 +1,8 @@
-package ru.spbau.sd.cli.commands;
+package ru.spbau.sd.cli.interpreter.commands;
 
 import ru.spbau.sd.cli.interpreter.ExecutionResult;
-import ru.spbau.sd.cli.io.InputStream;
-import ru.spbau.sd.cli.io.OutputStream;
+import ru.spbau.sd.cli.interpreter.io.InputStream;
+import ru.spbau.sd.cli.interpreter.io.OutputStream;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -128,37 +128,34 @@ public enum BuiltinCommand implements Command {
         }
 
         class WCStat {
-            private long stats[] = new long[STATS_NUMBER];
-            private int INDEX_LINES = 0;
-            private int INDEX_WORDS = 1;
-            private int INDEX_SYMBOLS = 2;
+            private long lines = 0;
+            private long words = 0;
+            private long symbols = 0;
 
-            WCStat() {
-                Arrays.fill(stats, 0);
-            }
+            WCStat(){}
 
             WCStat(String str) {
-                stats[INDEX_LINES] = (' ' + str).split("\n").length;
-                stats[INDEX_WORDS] = countNonEmpty(str.split("[ \n\t]"));
-                stats[INDEX_SYMBOLS] = str.length();
+                lines = (' ' + str).split("\n").length;
+                words = countNonEmpty(str.split("[ \n\t]"));
+                symbols = str.length();
             }
 
             private void merge(WCStat other) {
-                for (int i = 0; i < STATS_NUMBER; ++i) {
-                    stats[i] += other.stats[i];
-                }
+                lines += other.lines;
+                words += other.words;
+                symbols += other.symbols;
             }
 
             private long getLinesNumber() {
-                return stats[INDEX_LINES];
+                return lines;
             }
 
             private long getWordsNumber() {
-                return stats[INDEX_WORDS];
+                return words;
             }
 
             private long getSymbolsNumber() {
-                return stats[INDEX_SYMBOLS];
+                return symbols;
             }
         }
     };

@@ -3,15 +3,13 @@ package ru.spbau.sd.cli.interpreter;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-import ru.spbau.sd.cli.commands.AssignmentCommand;
-import ru.spbau.sd.cli.commands.BuiltinCommand;
-import ru.spbau.sd.cli.commands.Command;
-import ru.spbau.sd.cli.commands.ExternalCommand;
-import ru.spbau.sd.cli.interpreter.ASTElement;
-import ru.spbau.sd.cli.interpreter.Environment;
-import ru.spbau.sd.cli.interpreter.Parser;
+import ru.spbau.sd.cli.interpreter.commands.AssignmentCommand;
+import ru.spbau.sd.cli.interpreter.commands.BuiltinCommand;
+import ru.spbau.sd.cli.interpreter.commands.Command;
+import ru.spbau.sd.cli.interpreter.commands.ExternalCommand;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ParserTest {
     @Test
@@ -50,6 +48,19 @@ public class ParserTest {
 
     @Test
     public void pipelineTest() {
-        //TODO implement
+        final String pipeline = "echo foo | echo";
+        final String arg = "foo";
+        Parser parser = new Parser(null);
+        ASTElement lastElement = parser.parseLine(pipeline);
+
+        Assert.assertSame(lastElement.getCommand(), BuiltinCommand.echo);
+        Assert.assertEquals(lastElement.getArguments(), Collections.EMPTY_LIST);
+
+        ASTElement firstElement = lastElement.getPrevious();
+        Assert.assertNotNull(firstElement);
+        Assert.assertNull(firstElement.getPrevious());
+        Assert.assertEquals(firstElement.getCommand(), BuiltinCommand.echo);
+        Assert.assertEquals(firstElement.getArguments(),
+                Collections.singletonList(arg));
     }
 }

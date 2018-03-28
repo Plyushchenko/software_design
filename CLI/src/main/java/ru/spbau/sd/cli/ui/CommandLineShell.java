@@ -1,10 +1,13 @@
 package ru.spbau.sd.cli.ui;
 
 import ru.spbau.sd.cli.interpreter.InterpreterSession;
-
 import java.util.Scanner;
 
-public class Shell {
+
+/**
+ * A command line user interface for the command interpreter.
+ */
+public class CommandLineShell {
     private static final String PROMPT = ">";
 
     public static void main(String[] args) {

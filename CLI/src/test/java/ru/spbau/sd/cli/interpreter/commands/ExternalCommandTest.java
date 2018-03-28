@@ -1,9 +1,8 @@
-package ru.spbau.sd.cli.commands;
+package ru.spbau.sd.cli.interpreter.commands;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import ru.spbau.sd.cli.commands.ExternalCommand;
-import ru.spbau.sd.cli.io.OutputStream;
+import ru.spbau.sd.cli.interpreter.io.OutputStream;
 
 import java.util.Collections;
 import java.util.List;

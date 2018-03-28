@@ -1,8 +1,8 @@
-package ru.spbau.sd.cli.commands;
+package ru.spbau.sd.cli.interpreter.commands;
 
 import ru.spbau.sd.cli.interpreter.ExecutionResult;
-import ru.spbau.sd.cli.io.InputStream;
-import ru.spbau.sd.cli.io.OutputStream;
+import ru.spbau.sd.cli.interpreter.io.InputStream;
+import ru.spbau.sd.cli.interpreter.io.OutputStream;
 
 import java.io.BufferedReader;
 import java.io.IOException;
