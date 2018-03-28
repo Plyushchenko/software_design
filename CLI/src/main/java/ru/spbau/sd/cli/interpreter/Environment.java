@@ -1,4 +1,4 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.interpreter;
 
 /**
  * An environment stores variables as a mapping from the name to the value.

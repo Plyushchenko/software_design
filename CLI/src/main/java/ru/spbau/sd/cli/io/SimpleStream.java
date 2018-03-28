@@ -1,4 +1,4 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.io;
 
 /**
  * An implementation of IOStream, in which the read method returns all the data
@@ -8,7 +8,7 @@ public class SimpleStream implements IOStream {
     private StringBuilder builder;
     private boolean empty;
 
-    SimpleStream() {
+    public SimpleStream() {
         builder = new StringBuilder();
         empty = true;
     }

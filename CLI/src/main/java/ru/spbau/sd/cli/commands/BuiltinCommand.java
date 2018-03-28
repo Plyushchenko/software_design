@@ -1,7 +1,10 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.commands;
+
+import ru.spbau.sd.cli.interpreter.ExecutionResult;
+import ru.spbau.sd.cli.io.InputStream;
+import ru.spbau.sd.cli.io.OutputStream;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,6 +34,7 @@ public enum BuiltinCommand implements Command {
             return ExecutionResult.OK;
         }
     },
+
     /**
      * Tells the interpreter to close session.
      */
@@ -41,6 +45,7 @@ public enum BuiltinCommand implements Command {
             return ExecutionResult.Finish;
         }
     },
+
     /**
      * Writes path to the current directory to the output stream.
      */
@@ -53,6 +58,7 @@ public enum BuiltinCommand implements Command {
             return ExecutionResult.OK;
         }
     },
+
     /**
      * If any arguments are passed, writes content of files with that names to the
      * output stream. Otherwise copies input to output stream.
@@ -79,6 +85,7 @@ public enum BuiltinCommand implements Command {
             return ExecutionResult.OK;
         }
     },
+
     /**
      * Counts lines, words and symbols in files which names are passed as arguments.
      * If no arguments provided, reads from input stream.

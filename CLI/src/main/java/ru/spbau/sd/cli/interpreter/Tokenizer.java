@@ -1,4 +1,4 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.interpreter;
 
 import java.util.ArrayList;
 import java.util.Iterator;

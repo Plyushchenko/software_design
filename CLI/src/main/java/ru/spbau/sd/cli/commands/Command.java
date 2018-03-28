@@ -1,4 +1,8 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.commands;
+
+import ru.spbau.sd.cli.interpreter.ExecutionResult;
+import ru.spbau.sd.cli.io.InputStream;
+import ru.spbau.sd.cli.io.OutputStream;
 
 import java.util.List;
 

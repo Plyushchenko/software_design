@@ -1,4 +1,9 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.interpreter;
+
+import ru.spbau.sd.cli.commands.AssignmentCommand;
+import ru.spbau.sd.cli.commands.BuiltinCommand;
+import ru.spbau.sd.cli.commands.Command;
+import ru.spbau.sd.cli.commands.ExternalCommand;
 
 import java.util.List;
 

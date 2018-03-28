@@ -1,8 +1,10 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.interpreter;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+import ru.spbau.sd.cli.interpreter.Environment;
+import ru.spbau.sd.cli.interpreter.Tokenizer;
 
 import java.util.*;
 

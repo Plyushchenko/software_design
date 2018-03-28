@@ -1,4 +1,6 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.ui;
+
+import ru.spbau.sd.cli.interpreter.InterpreterSession;
 
 import java.util.Scanner;
 

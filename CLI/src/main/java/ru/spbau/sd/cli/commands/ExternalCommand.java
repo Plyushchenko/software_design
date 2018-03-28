@@ -1,4 +1,8 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.commands;
+
+import ru.spbau.sd.cli.interpreter.ExecutionResult;
+import ru.spbau.sd.cli.io.InputStream;
+import ru.spbau.sd.cli.io.OutputStream;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +16,7 @@ import java.util.List;
 public class ExternalCommand implements Command {
     private String program;
 
-    ExternalCommand(String program) {
+    public ExternalCommand(String program) {
         this.program = program;
     }
 

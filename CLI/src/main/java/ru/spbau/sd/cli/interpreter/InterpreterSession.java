@@ -1,4 +1,7 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.interpreter;
+
+import ru.spbau.sd.cli.io.InputStream;
+import ru.spbau.sd.cli.io.SimpleStream;
 
 /**
  * The main class of the interpreter for interacting with users.

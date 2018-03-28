@@ -1,4 +1,9 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.commands;
+
+import ru.spbau.sd.cli.interpreter.Environment;
+import ru.spbau.sd.cli.interpreter.ExecutionResult;
+import ru.spbau.sd.cli.io.InputStream;
+import ru.spbau.sd.cli.io.OutputStream;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -21,7 +26,7 @@ public class AssignmentCommand implements Command {
      * @param value the value to assign
      * @param environment the environment witch stores variables
      */
-    AssignmentCommand(String name, String value, Environment environment) {
+    public AssignmentCommand(String name, String value, Environment environment) {
         this.name = name;
         this.value = value;
         this.environment = environment;

@@ -1,8 +1,10 @@
-package ru.spbau.sd.cli;
+package ru.spbau.sd.cli.commands;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+import ru.spbau.sd.cli.commands.AssignmentCommand;
+import ru.spbau.sd.cli.interpreter.Environment;
 
 import java.util.Collections;
 
