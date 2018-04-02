@@ -26,10 +26,21 @@ public class AssignmentCommand implements Command {
      * @param value the value to assign
      * @param environment the environment witch stores variables
      */
-    public AssignmentCommand(String name, String value, Environment environment) {
+    private AssignmentCommand(String name, String value, Environment environment) {
         this.name = name;
         this.value = value;
         this.environment = environment;
+    }
+
+    /**
+     * Creates an instance from a textual representation and environment.
+     * @param cmd - the textual representation
+     * @param environment - the environment
+     * @return
+     */
+    public static AssignmentCommand create(String cmd, Environment environment) {
+        String[] parts = cmd.split("=");
+        return new AssignmentCommand(parts[0], parts[1], environment);
     }
 
     @Override

@@ -44,8 +44,8 @@ public class AssignmentCommandTest {
         final String value = "value";
         Environment mockedEnvironment = Mockito.mock(Environment.class);
 
-        AssignmentCommand command =
-                new AssignmentCommand(name, value, mockedEnvironment);
+        AssignmentCommand command = AssignmentCommand.create(
+                String.format("%s=%s", name, value), mockedEnvironment);
         command.run(Collections.emptyList(), null, null);
         Mockito.verify(mockedEnvironment).set(name, value);
     }

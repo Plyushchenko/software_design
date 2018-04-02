@@ -1,9 +1,6 @@
 package ru.spbau.sd.cli.interpreter;
 
-import ru.spbau.sd.cli.interpreter.commands.AssignmentCommand;
-import ru.spbau.sd.cli.interpreter.commands.BuiltinCommand;
-import ru.spbau.sd.cli.interpreter.commands.Command;
-import ru.spbau.sd.cli.interpreter.commands.ExternalCommand;
+import ru.spbau.sd.cli.interpreter.commands.*;
 
 import java.util.List;
 
@@ -18,22 +15,38 @@ public class Parser {
         this.environment = environment;
     }
 
+    /**
+     * Makes the required Command from its name or textual representation.
+     * @param cmd - String representation of the command
+     * @return The Command
+     */
+    private Command chooseCommand(String cmd) {
+        if (AssignmentCommand.isAssignment(cmd)) {
+            return AssignmentCommand.create(cmd, environment);
+        }
+        switch (cmd) {
+            case "echo":
+                return new CmdEcho();
+            case "cat":
+                return new CmdCat();
+            case "exit":
+                return new CmdExit();
+            case "pwd":
+                return new CmdPwd();
+            case "wc":
+                return new CmdWc();
+            default:
+                return new ExternalCommand(cmd);
+        }
+    }
+
     /*
     Creates an AST node from a pipeline step represented in the form of a list
     of tokens. The first node is interpreted as command name, the rest - as
     arguments.
      */
     private ASTElement buildCommand(List<String> tokens) {
-        Command command;
-        String commandToken = tokens.get(0);
-        if (BuiltinCommand.exists(commandToken)) {
-            command = BuiltinCommand.valueOf(commandToken);
-        } else if (AssignmentCommand.isAssignment(commandToken)) {
-            String[] parts = tokens.get(0).split("=");
-            command = new AssignmentCommand(parts[0], parts[1], environment);
-        } else {
-            command = new ExternalCommand(commandToken);
-        }
+        Command command = chooseCommand(tokens.get(0));
         return new ASTElement(command, tokens.subList(1, tokens.size()));
     }
 
