@@ -11,7 +11,7 @@ public class SimpleEnvironment implements Environment {
     public static final String PWD = "PWD";
     private final Map<String, String> vars;
 
-    SimpleEnvironment() {
+    public SimpleEnvironment() {
         vars = new HashMap<>();
         set("HOME", System.getProperty("user.home"));
         set("PWD", System.getProperty("user.dir"));

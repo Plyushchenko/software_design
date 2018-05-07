@@ -51,12 +51,12 @@ public class CmdLs implements Command {
         }
         File[] folderContent = folder.listFiles(file -> !file.isHidden());
         if (folderContent == null) {
-            outputStream.write(folder + "\n");
+            outputStream.write(folder.getName() + "\n");
             return ExecutionResult.OK;
         }
         Arrays.sort(folderContent, Comparator.comparing(a -> a.getName().toLowerCase()));
         for (File folderElement: folderContent) {
-            outputStream.write(folderElement.getName());
+            outputStream.write(folderElement.getName() + "\n");
         }
         return ExecutionResult.OK;
     }

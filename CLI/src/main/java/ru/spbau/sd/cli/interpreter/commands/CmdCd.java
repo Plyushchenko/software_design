@@ -39,7 +39,10 @@ public class CmdCd implements Command {
                 outputStream.write("Please provide 0 or 1 argument");
                 return ExecutionResult.Error;
             }
-            File file = new File(environment.get(SimpleEnvironment.PWD) + File.separator + arguments.get(0));
+            File file = new File(arguments.get(0));
+            if (!file.isAbsolute()) {
+                file = new File(environment.get(SimpleEnvironment.PWD) + File.separator + arguments.get(0));
+            }
             if (!file.exists()) {
                 outputStream.write("cd: " + arguments.get(0) + ": No such file or directory");
                 return ExecutionResult.Error;
