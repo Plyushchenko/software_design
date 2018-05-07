@@ -32,9 +32,13 @@ public class Parser {
             case "exit":
                 return new CmdExit();
             case "pwd":
-                return new CmdPwd();
+                return new CmdPwd(environment);
             case "wc":
                 return new CmdWc();
+            case "ls":
+                return new CmdLs(environment);
+            case "cd":
+                return new CmdCd(environment);
             default:
                 return new ExternalCommand(cmd);
         }
